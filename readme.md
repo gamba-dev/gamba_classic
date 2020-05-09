@@ -6,11 +6,11 @@ gamba is an open source transaction analysis library written in Python. It conta
 
 
 ## Where to get it
-The source code is available at www.github.com/gamba-dev/gamba
-
-It can be installed through PyPi
+It can be installed through PyPi using the following command;
 
 `pip install gamba`
+
+The source code is available at www.github.com/gamba-dev/gamba
 
 ## Documentation
 The documentation for gamba is available at [gamba.dev](https://www.gamba.dev)
