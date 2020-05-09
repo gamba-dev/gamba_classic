@@ -1,0 +1,275 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300&display=swap');
+
+*{
+	font-family: Arial, sans-serif;
+}
+
+body{
+	max-width: 860px;
+	margin: 0 auto;
+    overflow-y: scroll;
+    margin-bottom: 100px;
+}
+
+h1.title{
+	font-family: Roboto;
+	text-align: left;
+	font-size: 50px;
+	line-height: 60px;
+	margin-bottom: 0;
+	margin-top: 72px;
+	font-weight: 200;
+	color: #333;
+}
+#pageheader span.version{
+	font-size: 16px;
+	color: #444;
+	margin-bottom: 0;
+}
+
+.subtitle{
+	padding-left: 5px;
+	font-weight: 200;
+	margin-top: -10px;
+	margin-bottom: -20px;
+	font-size: 14px;
+}
+.subtitle a{
+	color: #007bff;
+}
+.citelink:hover{
+	cursor: pointer;
+}
+h1{
+	font-size: 32px;
+	font-family: 'Roboto';
+	font-weight: normal;
+	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 20px !important;
+	font-weight: normal !important;
+}
+h3{
+	font-weight: normal;
+}
+h2{
+	clear: both;
+	background-color: #bed4eb;
+	padding: 5px;
+	padding-left: 10px;
+	border-radius: 5px;
+}
+h2 a{
+	color: #007bff !important;
+}
+
+.toctree-l2{
+	list-style: '- ';
+}
+form.search input{
+	padding-left: 5px;
+}
+
+p{
+	text-align: justify !important;
+	font-family: Arial, sans-serif;
+	font-size: 0.9em;
+	clear: both;
+	color: #3E4349;
+}
+p img{
+	clear: both;
+	margin-bottom: 10px;
+}
+img{
+	display: block;
+	margin: 0 auto;
+}
+
+a.reference, a{
+	color: #3c8bbf;
+}
+a:visited{
+	color: #3c8bbf;	
+}
+
+.pre{
+	font-family: 'Roboto Mono' !important;
+}
+
+dl.function{
+	border-top: 2px solid #ccc;
+	padding-top: 15px;
+}
+
+.descname{
+	color: blue;
+}
+
+dt:target, .highlighted{
+	border: 2px solid green;
+	padding: 3px;
+	border-radius: 3px;
+	background-color: white !important;
+}
+div.landing_image {
+	min-height: 0;
+	text-align: center;
+	width: 33%;
+	margin: 0;
+	margin-bottom: 10px;
+}
+div.landing_image .figure{
+	margin: 0;
+	width: 100%;
+}
+
+div.landing_image p{
+	visibility: hidden;
+	display: none;
+}
+
+div.documentwrapper{
+	padding-bottom: 100px;
+}
+div.related{
+	padding: 5px;
+}
+#pagefooter{
+	text-align: center;
+}
+#pagefooter h2{
+	background-color: white !important;
+}
+
+.sphinxsidebarwrapper h3{
+	margin-top: -6px;
+}
+
+pre span{
+	font-family: 'Roboto Mono' !important;
+	font-size: 0.9em;
+}
+
+div.highlight pre{
+	border: 2px solid #dae8fc;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: #ffffee;
+}
+div.admonition dt {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.tldr{
+	margin-top: 30px;
+}
+hr{
+	color: #eee;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+table{
+	width: 100%
+}
+
+nav#breadcrumbs{
+	visibility: hidden;
+}
+
+
+#table-of-contents{
+	line-height: 10px;
+	padding: 10px;
+	padding-top: 20px;
+	border-radius: 5px;
+}
+#table-of-contents li{
+	list-style: disc;
+}
+#table-of-contents ul li li{
+	list-style: '- ';
+}
+
+h2 a.toc-backref{
+	color: black !important;
+}
+
+.body h3{
+	clear: both;
+	background-color: #bed4eb;
+	padding: 5px;
+	padding-left: 10px;
+	border-radius: 5px;
+}
+.body h3 a{
+	color: black !important;
+}
+
+
+ul.simple li p{
+    margin: 0px;
+    margin-bottom: 3px;
+}
+
+
+table.longtable.docutils.align-default{
+	
+}
+table.longtable.docutils.align-default col:nth-of-type(1){
+	width: 100% !important;
+}
+table.longtable.docutils.align-default td:nth-of-type(2) {
+	display: none;
+}
+table.longtable.docutils.align-default tr{
+	line-height: 0px;
+	white-space: nowrap;
+}
+table.longtable.docutils.align-default td{
+	padding: 0;
+	padding-left: 5px;
+}
+
+
+.research_toc .toctree-wrapper ul li{
+	width: 90%;
+	text-align: center;
+	margin-bottom: 15px;
+	font-weight: bold;
+	display: inline-block;
+}
+.research_toc .toctree-wrapper ul li a{
+	display: block;
+
+	height: 100%;
+
+	border: 2px solid gray;
+
+	border-radius: 3px;
+
+	padding: 30px 20px;
+}
+.research_toc .toctree-wrapper ul li a:hover{
+	background-color: #d4edda;
+}
+
+span#wtf{
+	background-color:#aedfff;
+	border-radius: 50%;
+	color: white;
+	display: inline;
+	font-size: 15px;
+	margin-left: 4px;
+	padding: 0 4px;
+	font-weight: bold;
+}
+
+span#wtf:hover{
+	cursor: pointer;
+}
