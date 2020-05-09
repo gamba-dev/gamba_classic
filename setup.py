@@ -11,14 +11,14 @@ PROJECT_URLS = {
 CLASSIFIERS = [
     	"Intended Audience :: Science/Research",
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD-3.0 License",
+        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering"
 ]
 
 setuptools.setup(
     name="gamba",
-    version="0.1",
+    version="0.1.0",
     author="Oliver J. Scholten",
     author_email="oliver@gamba.dev",
     description="gambling transaction analysis in Python",
@@ -31,3 +31,17 @@ setuptools.setup(
     python_requires='>=3.8',
     zip_safe=False
 )
+
+# ====================================================
+# note to self: 
+
+# first, remove the old dist/
+# rm -R dist/
+
+# then, create the new one (check version number!!!!!)
+# python3 setup.py sdist bdist_wheel
+
+# finally, upload it to PyPI using twine
+# python3 -m twine upload dist/*
+
+# ====================================================

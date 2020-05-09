@@ -1,4 +1,4 @@
-***current release: soft-launch v0.1 beta (features and core architecture may change)***
+***current release: soft-launch 0.1 beta (features and core architecture may change)***
 
 # gamba: gambling transaction analysis in Python
 
@@ -10,7 +10,7 @@ It can be installed through PyPi using the following command;
 
 `pip install gamba`
 
-The source code is available at www.github.com/gamba-dev/gamba
+For the very latest version, the source code is available at www.github.com/gamba-dev/gamba
 
 ## Documentation
 The documentation for gamba is available at [gamba.dev](https://www.gamba.dev)
