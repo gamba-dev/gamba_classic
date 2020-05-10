@@ -273,3 +273,9 @@ span#wtf{
 span#wtf:hover{
 	cursor: pointer;
 }
+
+
+div.overview_top img{
+	width: 60%;
+	margin: 30px auto;
+}
