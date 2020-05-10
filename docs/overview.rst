@@ -15,7 +15,9 @@ Gambling transaction data typically comes in different structures, from indivdiu
 The number and type of analytical methods which can be applied to this type of data are equally variable, from simple descriptive statistics to unsupervised machine learning techniques. 
 To create a library capable of taking multiple data sources and performing multiple analyses, gamba uses a middle-step between them.
 
-.. figure:: images/gamba_pipeline.svg
+.. figure:: images/top_level_options.svg
+
+.. figure:: images/simple_workflow.svg
 
 To make this possible, analyses using gamba revolve around the idea of a **measures table**, that is, a dataframe, or table, in a particular format. 
 This format has an identifier column (player_id), a collection of behavioural measures columns for each of those players, and (optionally) one or more labelling columns describing each player's membership to a given category or cluster;

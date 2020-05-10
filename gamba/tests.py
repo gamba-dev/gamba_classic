@@ -3,13 +3,13 @@
 import pandas as pd, numpy as np, math
 from scipy import stats
 
-def descriptive_table(measures, loud=False, extended=False):
+def descriptive_table(measures_table, loud=False, extended=False):
 	"""
 	Creates the first table found in LaBrie et al's 2008 paper, which presents descriptive statistics for each of the behavioural measures they calculated.
 	These include the mean, standard deviation, and median, of each behavioural measure.
 
 	Args:
-		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		measures_table (Dataframe): Collection of behavioural measures for a cohort of players.
 		loud (Boolean): Whether or not to output status updates as the function progresses, default is False.
 	
 	Returns:
@@ -17,17 +17,17 @@ def descriptive_table(measures, loud=False, extended=False):
 	"""
 	# first pull all of the data out of the dictionary for more readable use
 	# later on
-	measure_names = list(measures.columns)[1:]
+	measure_names = list(measures_table.columns)[1:]
 
 	means = []
 	stds = []
 	medians = []
 	stats.iqrs = []
 	for measure in measure_names:
-		means.append(measures[measure].mean())
-		stds.append(measures[measure].std())
-		medians.append(measures[measure].median())
-		stats.iqrs.append(stats.iqr(measures[measure].values))
+		means.append(measures_table[measure].mean())
+		stds.append(measures_table[measure].std())
+		medians.append(measures_table[measure].median())
+		stats.iqrs.append(stats.iqr(measures_table[measure].values))
 
 	if loud:
 		print('calculating descriptive statistics for LaBrie measures')
@@ -48,25 +48,25 @@ def descriptive_table(measures, loud=False, extended=False):
 	return descriptive_df
 
 
-def ks_test(measures):
+def ks_test(measures_table):
 	"""
 	Performs a one sample Kolmogorov-Smirnov test.
 	This approximately indicates whether or not a collection of calculated behavioural measures are normally distributed.
 
 	Args:
-		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		measures_table (Dataframe): Collection of behavioural measures for a cohort of players.
 	
 	Returns:
 		Dataframe containing the K-S test scores and p-values of the behavioural measures provided.
 
 	"""
 
-	measure_names = list(measures.columns)[1:]
+	measure_names = list(measures_table.columns)[1:]
 
 	scores = []
 	pvals = []
 	for measure in measure_names:
-		result = stats.kstest(measures[measure], 'norm')
+		result = stats.kstest(measures_table[measure], 'norm')
 		scores.append(result[0])
 		pvals.append(result[1])
 
@@ -82,25 +82,25 @@ def ks_test(measures):
 	return ks_table
 
 
-def cohens_d(measures, label):
+def cohens_d(measures_table, label):
 	"""
 	Calculates Cohen's d value between the behavioural measures of two groups of players. 
 	Groups are distinguished using a label column which is either 1 (in group) or 0 (not in group).
 	For example, the column 'in_top5' may represent whether or not a player is in the top 5 % of players by total amount wagered, and would be 1 or 0 for the top 5 and remaining 95 percent respectively.
 
 	Args:
-		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		measures_table (Dataframe): Collection of behavioural measures for a cohort of players.
 		label (String): The name of the column representing the group's label, e.g. 'in_top5'.
 	
 	Returns:
 		Dataframe containing Cohen's d values between each of the labelled groups for each of the behavioural measures provided.
 	"""
 
-	control_group = measures[measures[label] == 0]
+	control_group = measures_table[measures_table[label] == 0]
 
-	experimental_group = measures[measures[label] == 1]
+	experimental_group = measures_table[measures_table[label] == 1]
 
-	measure_names = list(measures.columns)[1:]
+	measure_names = list(measures_table.columns)[1:]
 
 	# remove the label column (no point doing cohens d on it)
 	measure_names.remove(label)
@@ -140,24 +140,24 @@ def cohens_d(measures, label):
 	return d_table
 
 
-def spearmans_r(measures, loud=False):
+def spearmans_r(measures_table, loud=False):
 	"""
 	Calculates the coefficients (nonparametric Spearman's r) between a collection of behavioural measures.
 	The upper-right diagonal of the resulting matrix is discarded (symmetric).
 	
 	Args:
-		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		measures_table (Dataframe): Collection of behavioural measures for a cohort of players.
 		loud (Boolean): Whether or not to output status updates as the function progresses, default is False.
 	
 	Returns:
 		Dataframe containing each of the coefficients marked by their p-values (** = p < 0.01, * = p < 0.05).
 	"""
 
-	measure_names = list(measures.columns)[1:]
+	measure_names = list(measures_table.columns)[1:]
 
 	data = []
 	for column in measure_names:
-		data.append(measures[column].values)
+		data.append(measures_table[column].values)
 
 	labels = measure_names
 
@@ -214,7 +214,7 @@ def spearmans_r(measures, loud=False):
 	return correlation_df
 
 
-def calculate_walker_matrix(game_measures, labels, measure='frequency', loud=False):
+def calculate_walker_matrix(measures_tables, labels, measure='frequency', loud=False):
 	"""
 	Performs a two sample Kolmogorov-Smirnov test between collections of measure from different games.
 
@@ -229,8 +229,8 @@ def calculate_walker_matrix(game_measures, labels, measure='frequency', loud=Fal
 	"""
 
 	data = []
-	for measures in game_measures:
-		data.append(measures[measure].values)
+	for measures_table in measures_tables:
+		data.append(measures_table[measure].values)
 
 	coefs = []
 	p_values = []
@@ -285,13 +285,13 @@ def calculate_walker_matrix(game_measures, labels, measure='frequency', loud=Fal
 
 # the following tests require labelled measures;
 
-def label_overlap_table(measures, labels):
+def label_overlap_table(measures_table, labels):
 	"""
 	Calculates the number of players under a collection of labels (exclusively), and on each pair of labels (again exclusively) in the list provided.
 	This method can be used to reproduce the final table in LaBrie et al's 2007 paper.
 
 	Args:
-		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		measures_table (Dataframe): Collection of behavioural measures for a cohort of players.
 		labels (List of Strings): The names of the column representing the group's labels, e.g. ['top_num_bets','top_total_wagered'].
 	
 	Returns:
@@ -303,7 +303,7 @@ def label_overlap_table(measures, labels):
 		other_labels = labels.copy()
 		other_labels.remove(label)
 		
-		records_with_label = measures[measures[label] == 1]
+		records_with_label = measures_table[measures_table[label] == 1]
 		
 		records_with_only_label = records_with_label.copy()
 		for other_label in other_labels:
@@ -338,8 +338,8 @@ def label_overlap_table(measures, labels):
 	combination_values = []
 	percentage_values = []
 	for index, combination in enumerate(label_combinations):
-		records_with_first = measures[measures[combination[0]] == 1]
-		records_with_both = measures[ (measures[combination[0]] == 1) & (measures[combination[1]] == 1) ]
+		records_with_first = measures_table[measures_table[combination[0]] == 1]
+		records_with_both = measures_table[ (measures_table[combination[0]] == 1) & (measures_table[combination[1]] == 1) ]
 		
 		records_with_only_both = records_with_both.copy()
 		other_labels = labels.copy()
@@ -364,7 +364,7 @@ def label_overlap_table(measures, labels):
 	
 	
 	# get the number of records which have all labels (members of all groups)
-	records_meeting_all_labels = measures[measures[labels[0]] == 1] # get those meeting the first label
+	records_meeting_all_labels = measures_table[measures_table[labels[0]] == 1] # get those meeting the first label
 	for label in labels[1:]:
 		records_meeting_all_labels = records_meeting_all_labels[records_meeting_all_labels[label] == 1]
 	
@@ -383,7 +383,7 @@ def label_overlap_table(measures, labels):
 	
 	combination_df.index = labels
 	
-	combination_df['all labels'] = str(round(len(records_meeting_all_labels))) + ' (' + str(round(len(records_meeting_all_labels) / len(measures[measures[labels[0]] == 1]) * 100)) + ')'
+	combination_df['all labels'] = str(round(len(records_meeting_all_labels))) + ' (' + str(round(len(records_meeting_all_labels) / len(measures_table[measures_table[labels[0]] == 1]) * 100)) + ')'
 	
 	complete_table = pd.concat([left_side, combination_df], axis=1)
 	

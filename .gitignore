@@ -1,0 +1,5 @@
+build/
+*.csv
+*.txt
+dist/
+gamba.egg-info/
