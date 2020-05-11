@@ -8,7 +8,7 @@ Having loaded a set of transaction data into a format compatable with the rest o
 
 	A measures table is a `Pandas DataFrame <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>`_ containing a player_id column and a collection of behavioural measures computed using those player's transactions. It can optionally contain labelling columns, see :doc:`stats_and_labelling`.
 
-	.. figure:: ../images/measures_table.svg
+	.. figure:: ../images/measures_table.*
 
 
 The first step in creating a measures table is to import the Pandas library, and create an empty DataFrame which we can add data to.

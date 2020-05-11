@@ -12,15 +12,10 @@ Gambling transaction data typically comes in different structures, from indivdiu
 The number and type of analytical methods which can be applied to this type of data are equally variable, from simple descriptive statistics to unsupervised machine learning techniques. 
 To create a library capable of taking multiple data sources and performing multiple analyses, gamba uses a middle-step between them.
 
-.. raw:: html
-
-    <div class="overview_top">
 
 .. figure:: images/top_level_options.*
+	:width: 60%
 
-.. raw:: html
-
-    </div>
 
 To make this possible, analyses using gamba revolve around the idea of a **measures table**, that is, a dataframe, or table, in a particular format. 
 This format has an identifier column (player_id), a collection of behavioural measures columns for each of those players, and (optionally) one or more labelling columns describing each player's membership to a given category or cluster;
@@ -29,15 +24,8 @@ This format has an identifier column (player_id), a collection of behavioural me
 
 This design means that all studies using gamba generally follow a three step process of choosing data, computing behavioural measures, and then applying some analytical technique to those measures. These steps can be repeated using the output of a previous iteration, for example; you may find a particular cohort of players to be of interest following an initial exploration, then take only that cohort and do some further analysis.
 
-.. raw:: html
-
-    <div class="overview_top">
-
 .. figure:: images/simple_workflow.*
-
-.. raw:: html
-
-    </div>
+	:width: 60%
 
 Methods in gamba therefore focus either on getting data into a measures table, or using this format as a foundation for analysis. 
 This is reflected in the design of each of the modules in the library. Each module contains methods for answering a specific type of question;

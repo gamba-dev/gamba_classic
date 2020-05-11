@@ -132,5 +132,6 @@ man_pages = [
      [author], 1)
 ]
 latex_elements = {
-    'extraclassoptions': 'openany'
+    'extraclassoptions': 'openany',
+    'sphinxsetup': 'hmargin={1.5in,1.5in}, vmargin={1.5in,2in}, marginpar=1in',
 }
