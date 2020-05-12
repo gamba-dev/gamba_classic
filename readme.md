@@ -2,6 +2,18 @@
 
 # gamba: gambling transaction analysis in Python
 
+
+.. image:: https://img.shields.io/pypi/v/gamba.svg
+	:target: https://pypi.org/project/gamba/
+
+.. image:: https://img.shields.io/github/license/gamba-dev/gamba
+	:target: https://github.com/gamba-dev/gamba/blob/master/license.md
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+
+
+
 gamba is an open source transaction analysis library written in Python. It contains a collection of methods for reproducing work in the field of player behaviour tracking - a subset of gambling studies focussed on understanding behaviours for consumer protection.
 
 
