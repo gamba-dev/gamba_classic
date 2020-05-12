@@ -4,9 +4,7 @@
 
 
 [![PyPI Latest Release](https://img.shields.io/pypi/v/gamba.svg)](https://pypi.org/project/gamba/)
-
 [![License](https://img.shields.io/github/license/gamba-dev/gamba)](https://github.com/gamba-dev/gamba/blob/master/license.md)
-
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
