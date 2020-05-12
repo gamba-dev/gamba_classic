@@ -3,14 +3,11 @@
 # gamba: gambling transaction analysis in Python
 
 
-.. image:: https://img.shields.io/pypi/v/gamba.svg
-	:target: https://pypi.org/project/gamba/
+[![PyPI Latest Release](https://img.shields.io/pypi/v/gamba.svg)](https://pypi.org/project/gamba/)
 
-.. image:: https://img.shields.io/github/license/gamba-dev/gamba
-	:target: https://github.com/gamba-dev/gamba/blob/master/license.md
+[![License](https://img.shields.io/github/license/gamba-dev/gamba)](https://github.com/gamba-dev/gamba/blob/master/license.md)
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/psf/black
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
 
