@@ -59,7 +59,6 @@ extensions = [
 ]
 add_module_names = False
 
-
 sphinx_gallery_conf = {
      'examples_dirs': 'gallery_examples',   # path to your example scripts
      'gallery_dirs': 'gallery',  # path to where to save gallery generated output
@@ -115,7 +114,9 @@ man_pages = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
 
-
+plot_pre_code = """
+import gamba as gb
+"""
 
 # -- Options for LaTeX output --------------------------------------------------
 

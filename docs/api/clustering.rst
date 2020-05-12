@@ -1,22 +1,10 @@
 gamba.clustering
 ==================
 
+The gamba.clustering module contains wrappers for methods found in the scikit-learn library.
 
-.. ipython:: python
-
-	import gamba as gb, pandas as pd
-	df = pd.DataFrame({'player_id':['a','b','c'], 
-			'duration':[3,14,5], 
-			'frequency':[0.9,0.2,0.7]})
-	display(df)
-
-
-here's some text
-
-.. ipython:: python
-
-	print("here's some more code")
-
+.. note::
+	Studies which use stochastic analytical methods, such as some of those in this module, are unlikely to be able to produce *exact* replications.
 
 .. automodule:: gamba.clustering
 	:members:
