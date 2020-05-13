@@ -7,54 +7,102 @@ import gamba.measures as gb
 
 
 # create some example data to compute measures on for testing
-example_transactions = pd.DataFrame()
-example_transactions["player_id"] = ["test_player"] * 4
-example_transactions["bet_time"] = [
+player_bets = pd.DataFrame()
+player_bets["player_id"] = ["test_player"] * 4
+player_bets["bet_time"] = [
     datetime.datetime.now() + datetime.timedelta(days=x) for x in range(4)
 ]
-example_transactions["bet_size"] = [2, 2, 3, 4]
-example_transactions["payout_size"] = [0, 4, 0, 8]
+player_bets["bet_size"] = [2, 2, 3, 4]
+player_bets["payout_size"] = [0, 4, 0, 8]
 
 
 def test_duration():
-    value = gb.duration(example_transactions)
+    value = gb.duration(player_bets)
     assert value == 4
 
 
 def test_frequency():
-    value = gb.frequency(example_transactions)
+    value = gb.frequency(player_bets)
     assert value == 100
 
 
 def test_number_of_bets():
-    value = gb.number_of_bets(example_transactions)
+    value = gb.number_of_bets(player_bets)
     assert value == 4
 
 
 def test_average_bets_per_day():
-    value = gb.average_bets_per_day(example_transactions)
+    value = gb.average_bets_per_day(player_bets)
     assert value == 1
 
 
 def test_average_bet_size():
-    value = gb.average_bet_size(example_transactions)
+    value = gb.average_bet_size(player_bets)
     assert value == 2.75
 
 
 def test_total_wagered():
-    value = gb.total_wagered(example_transactions)
+    value = gb.total_wagered(player_bets)
     assert value == 11
 
 
 def test_net_loss():
-    value = gb.net_loss(example_transactions)
+    value = gb.net_loss(player_bets)
     assert value == -1
 
 
 def test_percent_loss():
-    value = gb.percent_loss(example_transactions)
+    value = gb.percent_loss(player_bets)
     # floating point value so the approx method comes in handy
     assert value == pytest.approx(-9.1, 0.1)
 
 
-# more to do, this is the rough flavour for now...
+# ==========================================
+
+# test measures for daily aggregate data
+
+# ==========================================
+
+player_bets_daily = player_bets.copy()
+player_bets_daily["bet_count"] = [1, 4, 2, 4]
+
+
+def test_number_of_bets_daily():
+    value = gb.number_of_bets_daily(player_bets_daily)
+    assert value == 11
+
+
+def test_average_bets_per_day_daily():
+    value = gb.average_bets_per_day_daily(player_bets_daily)
+    assert value == 2.75
+
+
+def test_average_bet_size_daily():
+    value = gb.average_bet_size_daily(player_bets_daily)
+    assert value == 1
+
+
+def test_intensity_daily():
+    value = gb.intensity_daily(player_bets_daily)
+    assert value == 2.75
+
+
+def test_frequency_daily():
+    value = gb.frequency_daily(player_bets_daily)
+    assert value == 4
+
+
+def test_variability_daily():
+    value = gb.variability_daily(player_bets_daily)
+    assert value == pytest.approx(1, 0.1)
+
+
+def test_trajectory_daily():
+    value = gb.trajectory_daily(player_bets_daily)
+    assert value == pytest.approx(0.7, 0.01)
+
+
+
+
+
+
