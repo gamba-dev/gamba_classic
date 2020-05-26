@@ -234,18 +234,18 @@ def summarise_app(player_bets):
 		player_bets (Dataframe): Dataframe containing bets to a gambling application.
 	
 	"""
-    users = set(df["player_id"].values)
-    games = set(df["game_type"].values)
-    bets = df["bet_size"].sum()
-    payouts = df["payout_size"].sum()
-    start_block = df["block_number"].min()
-    end_block = df["block_number"].max()
-    start = df["bet_time"].min()
-    end = df["bet_time"].max()
+    users = set(player_bets["player_id"].values)
+    games = set(player_bets["game_type"].values)
+    bets = player_bets["bet_size"].sum()
+    payouts = player_bets["payout_size"].sum()
+    start_block = player_bets["block_number"].min()
+    end_block = player_bets["block_number"].max()
+    start = player_bets["bet_time"].min()
+    end = player_bets["bet_time"].max()
 
     print("users:", len(users))
     print("games:", len(games))
-    print("num bets:", len(df))
+    print("num bets:", len(player_bets))
     print("bet value:", bets)
     print("payout value:", payouts)
     print("start:", start, int(start_block))
