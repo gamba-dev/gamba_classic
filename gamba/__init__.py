@@ -36,6 +36,7 @@ from gamba.measures import (
     variability_daily,
     check_measure_data,
     standardise_measures_table,
+    split_measures_table
 )
 
 from gamba.labels import top_split, get_labelled_groups

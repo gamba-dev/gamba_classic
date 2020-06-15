@@ -131,7 +131,7 @@ def prepare_philander_data(filename, loud=False):
         loud (Boolean): Whether or not to output status updates as the function progresses, default is False.
     
     """
-    analytic_data = gb.read_csv(filename, delimiter='\t')
+    analytic_data = read_csv(filename, delimiter='\t')
     philander_data = analytic_data.copy()
     philander_data['self_exclude'] = np.where(philander_data['Sereason'] == 3, 1, 0) # apply the binary self-exclude technique (middle of page 5)
     philander_data.drop(labels=['Sereason','random','p2clusteringactivity','p2clusterhalf1','p2clusterhalf2'], axis=1, inplace=True)
@@ -140,7 +140,7 @@ def prepare_philander_data(filename, loud=False):
                               'z_intensity','z_variability','z_frequency','z_trajectory','self_exclude']
     if loud:
         print(len(philander_data), 'players loaded')
-        
+
     return philander_data
 
 def split_individual_transactions(matched_df, savedir):
