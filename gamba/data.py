@@ -122,6 +122,27 @@ def prepare_braverman_data(filename, loud=False):
     return braverman_data
 
 
+def prepare_philander_data(filename, loud=False):
+    """
+    Loads in the analytic data set of high-risk internet gamblers and removes the UserID, Sereason, random, and clustering columns as described in Philander's 2014 study.
+
+    Args:
+        filename (String): The name of the file downloaded from the transparency project's website (should be the same as the Braverman and Shaffer data), e.g. 'home/data/DailyData.txt'.
+        loud (Boolean): Whether or not to output status updates as the function progresses, default is False.
+    
+    """
+    analytic_data = gb.read_csv(filename, delimiter='\t')
+    philander_data = analytic_data.copy()
+    philander_data['self_exclude'] = np.where(philander_data['Sereason'] == 3, 1, 0) # apply the binary self-exclude technique (middle of page 5)
+    philander_data.drop(labels=['Sereason','random','p2clusteringactivity','p2clusterhalf1','p2clusterhalf2'], axis=1, inplace=True)
+    philander_data.columns = ['player_id', 'country','gender','age','total_wagered','num_bets','frequency','duration','bets_per_day','net_loss',
+                              'intensity','variability','frequency_1m','trajectory',
+                              'z_intensity','z_variability','z_frequency','z_trajectory','self_exclude']
+    if loud:
+        print(len(philander_data), 'players loaded')
+        
+    return philander_data
+
 def split_individual_transactions(matched_df, savedir):
     """
 	Seperates all transactions from each unique player from the matched bet-payout dataframe of a single application.

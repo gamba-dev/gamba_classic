@@ -11,6 +11,7 @@ __version__ = "0.1b"
 from gamba.data import (
     prepare_labrie_data,
     prepare_braverman_data,
+    prepare_philander_data,
     split_individual_transactions,
     load_directory,
     read_csv,
