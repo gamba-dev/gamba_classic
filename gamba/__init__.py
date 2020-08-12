@@ -36,10 +36,16 @@ from gamba.measures import (
     variability_daily,
     check_measure_data,
     standardise_measures_table,
-    split_measures_table
+    split_measures_table,
+
+    calculate_labrie_measures, 
+    calculate_braverman_measures
 )
 
-from gamba.labels import top_split, get_labelled_groups
+from gamba.labels import (
+    top_split, 
+    get_labelled_groups
+)
 
 from gamba.tests import (
     descriptive_table,
@@ -51,7 +57,7 @@ from gamba.tests import (
     add_tables,
 )
 
-from gamba.clustering import (
+from gamba.machine_learning import (
     k_means,
     k_means_range,
     k_means_ensemble,
@@ -70,7 +76,6 @@ from gamba.plots import (
     plot_cluster_sizes,
 )
 
-from gamba.studies import calculate_labrie_measures, calculate_braverman_measures
 
 
 print("thank you for using gamba!")

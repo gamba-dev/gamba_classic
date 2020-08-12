@@ -13,7 +13,7 @@ Quick links to each of the individual module pages is directly below, followed b
 	measures
 	labels
 	tests
-	clustering
+	machine_learning
 	plots
 	studies 
 
@@ -62,12 +62,14 @@ The :meth:`get_labelled_groups` method is provided as a convenient way to split 
 
 .. raw:: html
 
-	<h2>Clustering</h2>
+	<h2>Machine Learning</h2>
 
-The :any:`gamba.clustering` module contains methods for clustering behavioural measures using the k-means clustering and agglomerate clustering algorithms (see the `sklearn library <https://scikit-learn.org/stable/modules/classes.html#module-sklearn.cluster>`_ for details).
+The :any:`gamba.machine_learning` module contains methods for clustering behavioural measures using the k-means clustering and agglomerate clustering algorithms (see the `sklearn library <https://scikit-learn.org/stable/modules/classes.html#module-sklearn.cluster>`_ for details).
 These are useful when detecting high-dimensional groups within a collection of behavioural measures, but can get complicated quite quickly.
 
-.. automodsumm:: gamba.clustering
+It also contains methods for creating and training computational models like neural networks (using the `keras library <https://keras.io>`_), which have been used in several recent studies to predict player behaviours.
+
+.. automodsumm:: gamba.machine_learning
 	:functions-only:
 
 

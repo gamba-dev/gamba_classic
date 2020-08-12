@@ -1,4 +1,4 @@
-# clustering module
+# machine learning module
 
 import numpy as np, pandas as pd
 from sklearn.cluster import KMeans
@@ -125,9 +125,7 @@ def k_means_range(measures_table, min_clusters=2, max_clusters=13):
     return inertias, silhouettes
 
 
-def k_means_ensemble(
-    measures_table, ensemble_size=100, min_clusters=2, max_clusters=13
-):
+def k_means_ensemble(measures_table, ensemble_size=100, min_clusters=2, max_clusters=13):
     """
 	Computes the k_means clustering algorithm across a range of cluster counts, a number of times.
 	This is useful for determining clusters in a more robust way but can be slow on large data sets.
