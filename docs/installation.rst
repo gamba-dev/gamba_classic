@@ -29,7 +29,7 @@ With the repository cloned, you're ready to start exploring. We recommend openin
 
 .. code-block:: none
 
-	pip install --upgrade ../gamba/
+	pip install -e .
 
-This will install the package from the local folder (not the PyPi version), reinstalling the package even if it appears up to date.
+This will install the package from the local folder (not the PyPi version), and any changes you make will be instantly applied wherever you're testing it.
 

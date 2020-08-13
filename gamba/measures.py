@@ -276,13 +276,13 @@ def trajectory_daily(player_bets, plot=False):
 
 
 def calculate_labrie_measures(
-    all_player_bets,
-    savedir="",
-    filename="gamba_labrie_measures.csv",
-    loud=False,
-    daily=True,
+	all_player_bets,
+	savedir="",
+	filename="gamba_labrie_measures.csv",
+	loud=False,
+	daily=True,
 ):
-    """
+	"""
 	Calculates the set of measures described in LaBrie et al's work in 2008 on casino gamblers.
 	These measures include the durations, frequencies, number of bets, bets per day, value per bet (eth), total amount wagered, net loss, and percent loss for each player.
 	As this method sits in the studies module, it accepts a list of dataframes representing each player's bets as input.
@@ -296,66 +296,66 @@ def calculate_labrie_measures(
 
 	"""
 
-    # load in all files (can take some time)
+	# load in all files (can take some time)
 
-    player_id = []
-    duration = []
-    frequency = []
-    number_of_bets = []
-    average_bets_per_day = []
-    average_bet_size = []
-    total_wagered = []
-    net_loss = []
-    percent_loss = []
+	player_id = []
+	duration = []
+	frequency = []
+	number_of_bets = []
+	average_bets_per_day = []
+	average_bet_size = []
+	total_wagered = []
+	net_loss = []
+	percent_loss = []
 
-    unique_players = list(set(all_player_bets["player_id"]))
+	unique_players = list(set(all_player_bets["player_id"]))
 
-    print(
-        "calculating LaBrie measures for",
-        len(unique_players),
-        "players, this may take some time...",
-    )
+	print(
+		"calculating LaBrie measures for",
+		len(unique_players),
+		"players, this may take some time...",
+	)
 
-    for i in tqdm(range(len(unique_players))):
-        player_bets = all_player_bets[all_player_bets["player_id"] == unique_players[i]]
-        player_id.append(player_bets.iloc[0]["player_id"])
-        duration.append(duration(player_bets))
-        frequency.append(frequency(player_bets))
-        if daily:
-            number_of_bets.append(number_of_bets_daily(player_bets))
-            average_bets_per_day.append(average_bets_per_day_daily(player_bets))
-            average_bet_size.append(average_bet_size_daily(player_bets))
-        else:
-            number_of_bets.append(number_of_bets(player_bets))
-            average_bets_per_day.append(average_bets_per_day(player_bets))
-            average_bet_size.append(average_bet_size(player_bets))
-        total_wagered.append(total_wagered(player_bets))
-        net_loss.append(net_loss(player_bets))
-        percent_loss.append(percent_loss(player_bets))
+	for i in tqdm(range(len(unique_players))):
+		player_bets = all_player_bets[all_player_bets["player_id"] == unique_players[i]]
+		player_id.append(player_bets.iloc[0]["player_id"])
+		duration.append(duration(player_bets))
+		frequency.append(frequency(player_bets))
+		if daily:
+			number_of_bets.append(number_of_bets_daily(player_bets))
+			average_bets_per_day.append(average_bets_per_day_daily(player_bets))
+			average_bet_size.append(average_bet_size_daily(player_bets))
+		else:
+			number_of_bets.append(number_of_bets(player_bets))
+			average_bets_per_day.append(average_bets_per_day(player_bets))
+			average_bet_size.append(average_bet_size(player_bets))
+		total_wagered.append(total_wagered(player_bets))
+		net_loss.append(net_loss(player_bets))
+		percent_loss.append(percent_loss(player_bets))
 
-    labrie_dict = {
-        "player_id": player_id,
-        "duration": duration,
-        "frequency": frequency,
-        "num_bets": number_of_bets,
-        "average_bets_per_day": average_bets_per_day,
-        "average_bet_size": average_bet_size,
-        "total_wagered": total_wagered,
-        "net_loss": net_loss,
-        "percent_loss": percent_loss,
-    }
+	labrie_dict = {
+		"player_id": player_id,
+		"duration": duration,
+		"frequency": frequency,
+		"num_bets": number_of_bets,
+		"average_bets_per_day": average_bets_per_day,
+		"average_bet_size": average_bet_size,
+		"total_wagered": total_wagered,
+		"net_loss": net_loss,
+		"percent_loss": percent_loss,
+	}
 
-    labrie_measures = pd.DataFrame.from_dict(labrie_dict)
-    labrie_measures.to_csv(savedir + filename, index=False)
+	labrie_measures = pd.DataFrame.from_dict(labrie_dict)
+	labrie_measures.to_csv(savedir + filename, index=False)
 
-    if loud:
-        print("LaBrie measures saved")
+	if loud:
+		print("LaBrie measures saved")
 
-    return labrie_measures
+	return labrie_measures
 
 
 def calculate_braverman_measures(all_player_bets, savedir="", loud=False):
-    """
+	"""
 	Calculates the set of measures described in Braverman and Shaffer's work in 2010 on high risk internet gamblers.
 	These measures include the frequency, intensity, variability, and trajectories of each player.
 	As this method sits in the studies module, it accepts a list of dataframes representing each player's bets as input.
@@ -367,52 +367,313 @@ def calculate_braverman_measures(all_player_bets, savedir="", loud=False):
 		loud (Boolean): Whether or not to output status updates as the function progresses, default is False.
 
 	"""
-    player_id = []
+	player_id = []
 
-    intensity = []
-    variability = []
-    frequency = []
-    trajectory = []
+	intensity = []
+	variability = []
+	frequency = []
+	trajectory = []
 
-    sum_of_stakes = []
-    total_num_bets = []
-    average_bet_size = []
-    duration = []
-    net_loss = []
+	sum_of_stakes = []
+	total_num_bets = []
+	average_bet_size = []
+	duration = []
+	net_loss = []
 
-    unique_players = list(set(all_player_bets["player_id"]))
+	unique_players = list(set(all_player_bets["player_id"]))
 
-    for i in tqdm(range(len(unique_players))):
-        player_bets = all_player_bets[all_player_bets["player_id"] == unique_players[i]]
+	for i in tqdm(range(len(unique_players))):
+		player_bets = all_player_bets[all_player_bets["player_id"] == unique_players[i]]
 
-        player_id.append(player_bets.iloc[0]["player_id"])
-        intensity.append(intensity_daily(player_bets))
-        frequency.append(frequency_daily(player_bets))
-        variability.append(variability_daily(player_bets))
-        trajectory.append(trajectory_daily(player_bets))
+		player_id.append(player_bets.iloc[0]["player_id"])
+		intensity.append(intensity_daily(player_bets))
+		frequency.append(frequency_daily(player_bets))
+		variability.append(variability_daily(player_bets))
+		trajectory.append(trajectory_daily(player_bets))
 
-        sum_of_stakes.append(player_bets["bet_size"].sum())
-        total_num_bets.append(player_bets["bet_count"].sum())
-        average_bet_size.append(
-            player_bets["bet_size"].sum() / player_bets["bet_count"].sum()
-        )
-        duration.append(duration(player_bets))
-        net_loss.append(net_loss(player_bets))
+		sum_of_stakes.append(player_bets["bet_size"].sum())
+		total_num_bets.append(player_bets["bet_count"].sum())
+		average_bet_size.append(
+			player_bets["bet_size"].sum() / player_bets["bet_count"].sum()
+		)
+		duration.append(duration(player_bets))
+		net_loss.append(net_loss(player_bets))
 
-    braverman_dict = {
-        "player_id": player_id,
-        "intensity": intensity,
-        "frequency": frequency,
-        "variability": variability,
-        "trajectory": trajectory,
-        "sum_of_stakes": sum_of_stakes,
-        "total_num_bets": total_num_bets,
-        "average_bet_size": average_bet_size,
-        "duration": duration,
-        "net_loss": net_loss,
-    }
+	braverman_dict = {
+		"player_id": player_id,
+		"intensity": intensity,
+		"frequency": frequency,
+		"variability": variability,
+		"trajectory": trajectory,
+		"sum_of_stakes": sum_of_stakes,
+		"total_num_bets": total_num_bets,
+		"average_bet_size": average_bet_size,
+		"duration": duration,
+		"net_loss": net_loss,
+	}
 
-    braverman_measures = pd.DataFrame.from_dict(braverman_dict)
-    braverman_measures.to_csv(savedir + "gamba_braverman_measures.csv", index=False)
+	braverman_measures = pd.DataFrame.from_dict(braverman_dict)
+	braverman_measures.to_csv(savedir + "gamba_braverman_measures.csv", index=False)
 
-    return braverman_measures
+	return braverman_measures
+
+
+
+
+# =========================================================
+# Plotting Functions for the Measures Module
+# =========================================================
+
+import matplotlib.pyplot as plt
+plt.style.use('gamba')
+
+
+def plot_measure_hist(measures, name):
+	"""
+	Plots a histogram for a named measure from a dataframe of measures.
+
+	Args:
+		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		name (String): The name of the measure to plot, e.g. 'duration'.
+
+	Returns:
+		Matplotlib.pyplot plot object.
+
+	"""
+
+	plt.figure()
+
+	plt.style.use('gamba')
+	data = measures[name].values
+	n, bins, patches = plt.hist(data, bins=50, alpha=0.5, label="data")
+	xmin, xmax, ymin, ymax = plt.axis()
+	plt.plot([data.mean(), data.mean()], [ymin, ymax * 0.95], label="mean")
+	plt.plot(
+		[np.median(data), np.median(data)],
+		[ymin, ymax * 0.95],
+		label="median",
+		color="green",
+	)
+	plt.legend()
+	plt.xlim(min(data), max(data))
+	plt.xlabel(name)
+	plt.ylim(min(n), max(n))
+	return plt
+
+
+def plot_measure_centile(measures, name, top_heavy=False):
+	"""
+	Plots centiles of a single named measure from a dataframe of measures.
+
+	Args:
+		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		name (String): The name of the measure to plot, e.g. 'duration'.
+		top_heavy (Boolean): Whether to plot each centile (100), or to plot every 5 up to 95 followed by 96-100 as individual percentiles (discontinuous x axis). Default is False (plot 100 bars).
+
+	Returns:
+		Matplotlib.pyplot plot object.
+
+	"""
+
+	plt.figure(figsize=(9, 4))
+
+	values = measures[name].values
+
+	percentile_values = []
+
+	percentiles = np.array(range(1, 101))
+
+	if top_heavy:
+		percentiles = list(range(5, 100, 5))
+		percentiles.extend(list(range(96, 101)))
+
+	previous_cutoff = 0
+	for percentile_group in percentiles:
+		cutoff = np.percentile(values, percentile_group)
+
+		this_group = [value for value in values if previous_cutoff <= value < cutoff]
+		previous_cutoff = cutoff
+
+		mean_value = 0
+		if len(this_group) > 0:
+			mean_value = np.mean(this_group)
+
+		percentile_values.append(mean_value)
+
+	# the +0.5 here shifts all bars down the x axis so that ticks line up with the start of the percentile
+	if top_heavy:
+		plt.bar(
+			np.array(range(len(percentiles))[:19]) + 0.5,
+			percentile_values[:19],
+			alpha=0.5,
+			edgecolor="black",
+			linewidth=1,
+			width=1,
+			label="5% Group",
+		)
+		plt.bar(
+			np.array(range(len(percentiles))[19:]) + 0.5,
+			percentile_values[19:],
+			alpha=0.5,
+			color="C1",
+			edgecolor="black",
+			linewidth=1,
+			width=1,
+			label="1% Group",
+		)
+		plt.legend()
+
+	else:
+		plt.bar(
+			np.array(range(len(percentiles))) + 0.5,
+			percentile_values,
+			alpha=0.5,
+			edgecolor="black",
+			linewidth=1,
+			width=1,
+		)
+
+	if top_heavy:
+		plt.xticks(np.array(range(len(percentiles))) + 1, percentiles)
+		plt.xlim(0, len(percentiles))
+		plt.grid(False)
+	else:
+		# plt.xticks(percentiles)
+		plt.xlim(0, len(percentiles))
+
+	plt.ylim(0, max(percentile_values) * 1.12)
+	plt.ylabel("Mean " + name.replace("_", " ").title())
+	plt.xlabel("Percentile")
+
+	return plt
+
+
+def plot_measure_pair_plot(measures, label_override=None, thermal=False, figsize=(14, 14)):
+
+	"""
+	Plots centiles of a single named measure from a dataframe of measures.
+
+	Args:
+		measures (Dataframe): Collection of behavioural measures for a cohort of players.
+		label_override (List of Strings): List of axis labels, if None, the column names directly from the measures dataframe will be used.
+		thermal (Boolean): Show 2D histograms instead of scatter plots (better for perceiving density).
+		figsize (Tuple of Integers (2)): Size of the resulting plot, (14,14) is good for large numbers of measures (5+).
+
+	Returns:
+		Matplotlib.pyplot plot object.
+
+	"""
+	colnames = list(measures.columns)[1:]
+	plt.rcParams["figure.figsize"] = figsize
+
+	num_measures = len(colnames)
+
+	fig, ax = plt.subplots(nrows=num_measures, ncols=num_measures)
+
+	for y, row in enumerate(ax):
+		for x, col in enumerate(row):
+
+			if x != y:
+				col.scatter(measures[colnames[x]].values, measures[colnames[y]].values)
+
+				if thermal:
+					xlim = col.get_xlim()
+					ylim = col.get_ylim()
+					x_increment = (xlim[1] - xlim[0]) / 25.0
+					y_increment = (ylim[1] - ylim[0]) / 25.0
+					xrange = np.arange(xlim[0], xlim[1] + x_increment, x_increment)
+					yrange = np.arange(ylim[0], ylim[1] + y_increment, y_increment)
+					heatmap_raw, xedges, yedges = np.histogram2d(
+						measures[colnames[x]].values,
+						measures[colnames[y]].values,
+						bins=(xrange, yrange),
+					)
+					heatmap = snf.gaussian_filter(heatmap_raw, sigma=2)
+					img = heatmap.T
+					X, Y = np.meshgrid(xedges, yedges)
+					col.pcolormesh(X, Y, img, cmap=cm.jet)
+					col.set_xlim(xlim)
+					col.set_ylim(ylim)
+			else:
+				col.hist(measures[colnames[x]], color="C2", bins=25)
+
+			if y != len(colnames) - 1:
+				col.axes.xaxis.set_ticklabels([])
+				col.xaxis.set_ticks_position("none")
+			if x != 0:
+				col.axes.yaxis.set_ticklabels([])
+				col.yaxis.set_ticks_position("none")
+
+			if x == 0:
+				if label_override == None:
+					col.set_ylabel(colnames[y])
+				else:
+					col.set_ylabel(label_override[y])
+			if y == len(colnames) - 1:
+				if label_override == None:
+					col.set_xlabel(colnames[x])
+				else:
+					col.set_xlabel(label_override[x])
+
+	fig.subplots_adjust(wspace=0.1, hspace=0.1)
+	return plt
+
+
+def plot_player_radar(values, lims=(-1, 1), loud=False):
+	"""
+	Creates a radar chart from a list of values, this is useful for visualising differences between 'typical' players in clusters or cohorts. 
+	Values should be normalised (zscore). 
+	[bug: first axis is not always at 12 o'clock]
+
+	Args:
+		values (List of Floats): The values to be plotted on the radar chart, values start at 12 o'clock on the radar and are plotted in clockwise order.
+		lims (Tuple of Integers (2)): The inner and outer limits of the radar axes (all axes are the same as values shoud be normalised.).
+	
+	Returns:
+		Matplotlib.pyplot plot object.
+
+	"""
+
+	values.append(values[0])
+	N = len(values) - 1
+	pi = math.pi
+	# What will be the angle of each axis in the plot? (we divide the plot / number of variable)
+
+	angle = 2 * pi / float(N)
+	angles = [angle * n for n in reversed(range(N))]
+	# rotate everything round 1/4 turn to put 0 at the top
+	angles = [angle + (3 / 8 * 2 * pi) for angle in angles]
+
+	for i, angle in enumerate(angles):
+		if angle > 2 * pi:
+			angles[i] = angles[i] - 2 * pi
+
+	angles += angles[:1]
+
+	# Initialise the spider plot
+	fig = plt.figure()
+	fig.patch.set_facecolor("white")
+	ax = plt.subplot(111, polar=True)
+	# plt.yticks([.25, .5, .75], [".25", ".5", ".75"], color="grey", size=7)
+	plt.ylim(lims)
+
+	# Draw one axis per variable + add labels labels yet
+	tick_labels = ["(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)", "(j)"]
+	plt.xticks(angles[:-1], tick_labels[: len(variable_names)], color="grey", size=8)
+
+	ax.tick_params(pad=5)  # move the axis labels out a bit
+	for label in ax.get_xticklabels() + ax.get_yticklabels():
+		label.set_fontsize(13)
+
+	# Draw ylabels
+	ax.set_rlabel_position(0)  # degrees from horisontal to mark the ticks
+	# Plot data
+	ax.plot(angles, values, linewidth=1, linestyle="solid", color="blue")
+	# Fill area
+	ax.fill(angles, values, "b", alpha=0.1)
+
+	return plt
+
+
+
+

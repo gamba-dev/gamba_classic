@@ -445,3 +445,51 @@ def add_tables(t1, t2, same_columns=False):
         t2.columns = [name + "_2" for name in t2.columns]
     combined = pd.concat([t1, t2.reindex(t1.index)], axis=1)
     return combined
+
+
+
+
+
+# =========================================================
+# Plotting Functions for the Tests Module
+# =========================================================
+
+import matplotlib.cm as cm
+
+def color_matrix(matrix, cmap):
+    """
+    Creates a shaded matrix based on a color map.
+
+    Better docs needed.
+    
+    """
+
+    results_size = len(correlations.columns)
+    values = np.empty((results_size, results_size), dtype=object)
+    for r, row in enumerate(correlations.values):
+        for e, element in enumerate(row):
+            if element == "-":
+                values[r, e] = 100
+                continue
+            if element == "":
+                values[r, e] = np.nan
+                continue
+            if "*" in str(element):
+                value = element.replace("*", "")
+                values[r, e] = float(value) * 100
+            else:
+                values[r, e] = element * 100
+
+    current_cmap = cm.get_cmap(cmap)
+    current_cmap.set_bad(color="white")
+    plt.imshow(np.array(values).astype(np.float), cmap=current_cmap)
+    plt.yticks(range(len(correlations.columns)), list(correlations.columns))
+    plt.xticks(range(len(correlations.columns)), list(correlations.columns))
+    plt.xticks(rotation=90)
+    cbar = plt.colorbar()
+    cbar.set_ticks([-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100])
+    cbar.set_ticklabels([-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1])
+    plt.ylabel("test")
+    return plt
+
+

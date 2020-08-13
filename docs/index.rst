@@ -3,19 +3,22 @@ Welcome
 =================================================
 
 
+
 *gamba* is an `open source <https://github.com/gamba-dev/gamba>`_ transaction analysis library written in Python. It contains a collection of methods for reproducing work in the field of player behaviour tracking - a subset of gambling studies focussed on understanding player behaviours.
 
-.. raw:: html
 
+
+.. raw:: html
+	
     <div class="sphx-glr-thumbcontainer landing_image">
 
 .. only:: html
 
- .. image:: /gallery/images/thumb/sphx_glr_plot_measure_hist_thumb.png
+ .. image:: /gallery/images/measures_table.svg
 	:target: gallery/index.html
 
 .. raw:: html
-
+	
     </div>
 
 .. raw:: html
@@ -24,7 +27,7 @@ Welcome
 
 .. only:: html
 
- .. image:: /gallery/images/thumb/sphx_glr_plot_measure_centile_thumb.png
+ .. image:: /gallery/images/measures_table.svg
  	:target: gallery/index.html
 
 .. raw:: html
@@ -37,7 +40,7 @@ Welcome
 
 .. only:: html
 
- .. image:: /gallery/images/thumb/sphx_glr_plot_pair_plot_thumb.png
+ .. image:: /gallery/images/measures_table.svg
  	:target: gallery/index.html
 
 .. raw:: html

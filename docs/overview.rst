@@ -34,8 +34,7 @@ This is reflected in the design of each of the modules in the library. Each modu
 - Which behavioural measures shall I calculate? (:any:`gamba.measures`)
 - Which groups of players are of interest for my study? (:any:`gamba.labels`)
 - How would I like to test my hypotheses? (:any:`gamba.tests`)
-- How do my data cluster? (:any:`gamba.clustering`)
-- How could I plot my findings? (:any:`gamba.plots`)
+- How do my data cluster? (:any:`gamba.machine_learning`)
 
 Splitting the library into modules like this means bits can be swapped out as required, and new (novel) techniques can be discovered more easily than ever before.
 It also means that as more studies are reproduced using gamba, the opportunities for exploring different combinations increases multiplicatively!

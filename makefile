@@ -19,6 +19,6 @@ clean:
 	
 %: makefile
 
-	pip install --upgrade --force-reinstall ../gamba
+	pip install -e .
 
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

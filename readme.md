@@ -1,15 +1,8 @@
-***current release: soft-launch 0.1 beta (features and core architecture may change)***
+***current release: soft-launch 0.2 beta (features and core architecture may change)***
 
 # gamba: gambling transaction analysis in Python
 
-
-[![PyPI Latest Release](https://img.shields.io/pypi/v/gamba.svg)](https://pypi.org/project/gamba/)
-[![License](https://img.shields.io/github/license/gamba-dev/gamba)](https://github.com/gamba-dev/gamba/blob/master/license.md)
-[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
-
-
-gamba is an open source transaction analysis library written in Python. It contains a collection of methods for reproducing work in the field of player behaviour tracking - a subset of gambling studies focussed on understanding behaviours for consumer protection.
+[*gamba*](https://www.gamba.dev) is an open source transaction analysis library written in Python. It contains a collection of methods for reproducing work in the field of player behaviour tracking - a subset of gambling studies focussed on understanding behaviours for consumer protection.
 
 
 ## Where to get it
@@ -23,10 +16,10 @@ For the very latest version, the source code is available at www.github.com/gamb
 The documentation for gamba is available at [gamba.dev](https://www.gamba.dev)
 
 ## License
-gamba is [BSD-3 licensed](https://www.github.com/gamba-dev/gamba/license.md).
+[*gamba*](https://www.gamba.dev) is [BSD-3 licensed](https://www.github.com/gamba-dev/gamba/license.md).
 
 ## Background
-gamba was created by [Oliver J. Scholten](https://scholar.google.co.uk/citations?user=tvAteogAAAAJ&hl=en) as a way to transparently replicate existing work in the field of player behaviour tracking. By open sourcing the tools needed to perform existing analyses, we hope to help researchers and regulators keep pace with understanding new gambling technologies and their social and economic impacts.
+[*gamba*](https://www.gamba.dev) was created by [Oliver J. Scholten](https://scholar.google.co.uk/citations?user=tvAteogAAAAJ&hl=en) as a way to transparently replicate existing work in the field of player behaviour tracking. By open sourcing the tools needed to perform existing analyses, we hope to help researchers and regulators keep pace with understanding new gambling technologies and their social and economic impacts.
 
 ## Getting help
 For general discussions the [official Twitter account](https://www.twitter.com/gamba_dev) is checked frequently. For usage questions the first place to check is [the documentation](https://www.gamba.dev), failing that the [developer email](mailto:dev@gamba.dev) is there to answer technical and new-user questions. 

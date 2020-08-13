@@ -313,3 +313,122 @@ def dummy_measures_table(size=100):
     ]
 
     return measures_table
+
+
+
+
+
+
+
+# =========================================================
+# Plotting Functions for the Data Module
+# =========================================================
+
+import matplotlib.pyplot as plt
+plt.style.use('gamba')
+
+def plot_player_career(player_df, savename=None):
+    """
+        Creates a candlestick-style plot of a players betting activity over the course of their career.
+        This works best on regularly-spaced sequential data but can also provide insight into intra-session win/loss patterns.
+
+    Args:
+        player_df (Dataframe): Collection of player bets, must include columns 'bet_size','payout_size','bet_time', and 'payout_time'.
+        savename (String): If given, saves the resulting plot to the name supplied, e.g. 'player_bets.png'.
+
+    Returns:
+        Matplotlib.pyplot plot object.
+
+    """
+    plt.figure(figsize=[5, 3])
+    previous_y_end = 0
+    for i, bet in player_df.iterrows():
+        bet_size = bet["bet_size"]
+        payout_size = bet["payout_size"]
+        bet_time = bet["bet_time"]
+        payout_time = bet["payout_time"]
+
+        start_y = previous_y_end
+        end_y = 0
+
+        # if bet loses
+        if payout_size < bet_size:
+            end_y = start_y - bet_size
+            # plt.plot([2*i, 2*i + 1], [bet_size, payout_size], marker='o', color='red')
+            plt.plot(
+                [i, i], [start_y, end_y], marker="o", color="#d30505", markersize=12
+            )
+        else:
+            end_y = start_y + payout_size
+            # plt.plot([2*i, 2*i + 1], [bet_size, payout_size], marker='o', color='green')
+            plt.plot(
+                [i, i], [start_y, end_y], marker="o", color="#00B007", markersize=12
+            )
+
+        previous_y_end = end_y
+
+    plt.xlabel(None)
+    if savename != None:
+        plt.savefig(savename, dpi=200, transparent=True)
+
+    return plt
+
+
+def plot_player_career_split(player_df):
+    """
+    Plot a player's betting and payout trajectory on a single plot, with green indicating payouts (top) and red indicating bets (bottom).
+    A cumulative value line is also plotted between the two.
+
+    Args:
+        player_df (Dataframe): Collection of player bets, must include columns 'bet_size','payout_size','bet_time', and 'payout_time'.
+        
+    Returns:
+        Matplotlib.pyplot plot object.
+
+    """
+    plt.figure()
+
+    previous_y_end = 0
+    for i, bet in player_df.iterrows():
+        bet_size = bet["bet_size"]
+        payout_size = bet["payout_size"]
+        bet_time = bet["bet_time"]
+        payout_time = bet["payout_time"]
+
+        start_y = previous_y_end
+        end_y = 0
+
+        # if bet loses
+        if payout_size < bet_size:
+            end_y = start_y - bet_size
+            # plt.plot([2*i, 2*i + 1], [bet_size, payout_size], marker='o', color='red')
+            plt.plot([i, i], [start_y, end_y], marker="o", color="red")
+        else:
+            end_y = start_y + payout_size
+            # plt.plot([2*i, 2*i + 1], [bet_size, payout_size], marker='o', color='green')
+            plt.plot([i, i], [start_y, end_y], marker="o", color="green")
+
+        previous_y_end = end_y
+
+    bets = player_df["bet_size"].values
+    payouts = player_df["payout_size"].values
+    plt.plot(
+        range(len(bets)),
+        np.cumsum(-bets),
+        marker="o",
+        color="red",
+        label="Cumulative Bets",
+    )
+    plt.plot(
+        range(len(payouts)),
+        np.cumsum(payouts),
+        marker="o",
+        color="green",
+        label="Cumulative Payouts",
+    )
+    plt.legend()
+    plt.xlim(0, len(bets) * 1.02)
+    plt.ylim(-max([sum(bets), sum(payouts)]), max([sum(bets), sum(payouts)]))
+    return plt
+
+

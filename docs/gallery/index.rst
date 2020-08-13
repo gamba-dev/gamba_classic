@@ -8,72 +8,11 @@
 Gallery
 =================
 
-The gamba library also contains a powerful :any:`gamba.plots` module, which can be used to visualise different parts of the analytical pipeline.
-This gallery contains a collection of figures which can be created using functions from this module.
+This is a gallery
 
 
 
 
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="We can get an idea for the distribution of a given behavioural measure by creating a histogram....">
-
-.. only:: html
-
- .. figure:: /gallery/images/thumb/sphx_glr_plot_measure_hist_thumb.png
-
-     :ref:`sphx_glr_gallery_plot_measure_hist.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /gallery/plot_measure_hist
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="The gamba.plot_measure_centile accepts a top_heavy parameter, which if set to True groups the b...">
-
-.. only:: html
-
- .. figure:: /gallery/images/thumb/sphx_glr_plot_measure_centile_thumb.png
-
-     :ref:`sphx_glr_gallery_plot_measure_centile.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /gallery/plot_measure_centile
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="We can visualize the relationships between different behavioural measures using a pair plot. Th...">
-
-.. only:: html
-
- .. figure:: /gallery/images/thumb/sphx_glr_plot_pair_plot_thumb.png
-
-     :ref:`sphx_glr_gallery_plot_pair_plot.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /gallery/plot_pair_plot
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

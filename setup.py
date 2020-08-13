@@ -29,8 +29,38 @@ setuptools.setup(
     project_urls=PROJECT_URLS,
     classifiers=CLASSIFIERS,
     python_requires='>=3.8',
-    zip_safe=False
+    zip_safe=False,
+
+    install_requires=[
+        "pandas >= 1.0.3",
+        "matplotlib >= 3.2.1",
+        "scikit-learn >= 0.23.0",
+        "statsmodels >= 0.11.1",
+    ],
+
+    extras_require = {
+        "dev" : [
+            "pytest >= 3.7",
+      ],
+
+    },
 )
+
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+import os
+import shutil
+
+gb_style_file = os.getcwd() + '/gamba/gamba.mplstyle'
+mpl_style_dir = mpl.get_data_path() + '/stylelib'
+
+print('copying gamba style into matplotlib style library...')
+shutil.copy(gb_style_file, mpl_style_dir)
+print('gamba plot style installed.')
+
+
 
 # ====================================================
 # note to self: 

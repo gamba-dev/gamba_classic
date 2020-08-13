@@ -60,7 +60,6 @@ h2{
 	background-color: #bed4eb;
 	padding: 5px;
 	padding-left: 10px;
-	border-radius: 5px;
 }
 h2 a{
 	color: #007bff !important;
@@ -80,6 +79,9 @@ p{
 	clear: both;
 	color: #3E4349;
 }
+
+p + p{text-indent: 2em}
+
 p img{
 	clear: both;
 	margin-bottom: 10px;

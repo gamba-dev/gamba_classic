@@ -14,8 +14,6 @@ Quick links to each of the individual module pages is directly below, followed b
 	labels
 	tests
 	machine_learning
-	plots
-	studies 
 
 
 
@@ -89,20 +87,6 @@ The :any:'gamba.tests' module contains functions capable of performing tests fou
 
 	<h2>Plotting</h2>
 
-The :any:`gamba.plots` module provides a collection of methods for visualising data throughout the analytical pipeline.
-These methods are useful for developing an understanding of the data at the exploratory stages of analysis, or for confirming findings which appear as a result of statistical tests or clustering.
-The :doc:`../gallery/index` page contains a showcase of each of these methods on synthetic data - the code provided may be a useful skeleton upon which to build your study!
+Each of the modules described above provide a collection of methods for visualising data throughout the analytical pipeline.
+These methods are useful for developing an understanding of the data at the different stages of analysis, or for confirming findings which appear as a result of statistical tests or clustering.
 
-.. automodsumm:: gamba.plots
-	:functions-only:
-
-
-.. raw:: html
-
-	<h2>Studies</h2>
-
-Finally, the :any:`gamba.studies` module contains some higher level methods specific to some of the studies this library can be used to replicate.
-These methods are extremely specific so may not find as much use as those above, but are included here for reference.
-
-.. automodsumm:: gamba.studies
-	:functions-only:

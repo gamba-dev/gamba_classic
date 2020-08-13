@@ -5,8 +5,7 @@
 # them to be accessed - also remember to check for name conflicts!
 
 
-__version__ = "0.1b"
-
+__version__ = "0.2.0"
 
 from gamba.data import (
     prepare_labrie_data,
@@ -17,6 +16,9 @@ from gamba.data import (
     read_csv,
     concat,
     summarise_app,
+
+    plot_player_career,
+    plot_player_career_split,
 )
 
 from gamba.measures import (
@@ -39,7 +41,12 @@ from gamba.measures import (
     split_measures_table,
 
     calculate_labrie_measures, 
-    calculate_braverman_measures
+    calculate_braverman_measures,
+
+    plot_measure_hist,
+    plot_measure_centile,
+    plot_measure_pair_plot,
+    plot_player_radar,
 )
 
 from gamba.labels import (
@@ -61,21 +68,23 @@ from gamba.machine_learning import (
     k_means,
     k_means_range,
     k_means_ensemble,
+
     agglomerative_cluster,
     describe_clusters,
-)
 
-from gamba.plots import (
-    plot_measure_hist,
-    plot_measure_centile,
-    plot_measure_pair_plot,
-    plot_player_career,
-    plot_player_career_split,
-    plot_player_radar,
+    logistic_regression,
+    lasso_logistic_regression,
+
+    svm_eps_regression,
+    svm_c_classification,
+    svm_one_classification,
+
+    rf_regression,
+    rf_classification,
+
     plot_agglomeration_dendrogram,
     plot_cluster_sizes,
+    
 )
 
-
-
-print("thank you for using gamba!")
+print("gamba ready.")

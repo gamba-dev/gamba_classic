@@ -13,7 +13,7 @@ To begin, we load in a measures table as done in the two previous sections;
 
 	display(measures_table.head(5))
 
-Next, we can perform the clustering algorithm once using functions from the :any:`gamba.clustering` module which wrap around the `scikit-learn library's clustering functions <https://scikit-learn.org/stable/modules/clustering.html>`_.
+Next, we can perform the clustering algorithm once using functions from the :any:`gamba.machine_learning` module which wraps around the `scikit-learn library's clustering functions <https://scikit-learn.org/stable/modules/clustering.html>`_.
 
 
 .. ipython:: python

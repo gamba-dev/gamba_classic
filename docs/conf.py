@@ -57,10 +57,11 @@ extensions = [
     'IPython.sphinxext.ipython_console_highlighting',
     'IPython.sphinxext.ipython_directive'
 ]
+
 add_module_names = False
 
 sphinx_gallery_conf = {
-     'examples_dirs': 'gallery_examples',   # path to your example scripts
+     'examples_dirs': 'gallery_scripts',   # path to your example scripts
      'gallery_dirs': 'gallery',  # path to where to save gallery generated output
      'reference_url': {
          # The module you locally document uses None
