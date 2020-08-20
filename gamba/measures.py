@@ -3,8 +3,8 @@
 # dependencies
 import datetime, pandas as pd, numpy as np
 from sklearn.linear_model import LinearRegression
-from scipy.stats import zscore
-
+import scipy.stats
+from tqdm import tqdm
 # data checking
 
 
@@ -40,7 +40,7 @@ def standardise_measures_table(measures_table):
 	standardised_table = pd.DataFrame()
 	standardised_table["player_id"] = measures_table["player_id"].values
 	for col in colnames:
-		standardised_table[col] = zscore(measures_table[col].values)
+		standardised_table[col] = scipy.stats.zscore(measures_table[col].values)
 
 	return standardised_table
 
@@ -165,7 +165,11 @@ def percent_loss(player_bets):
 	return percent_loss_value
 
 
-# daily aggregate measures
+
+
+# =========================================================
+# Behavioural Measures for Daily Aggregate Data
+# =========================================================
 
 
 def number_of_bets_daily(player_bets):
@@ -204,7 +208,6 @@ def average_bet_size_daily(player_bets):
 
 
 # braverman measures
-
 
 def intensity_daily(player_bets):
 	"""
@@ -274,14 +277,12 @@ def trajectory_daily(player_bets, plot=False):
 
 
 
+# =========================================================
+# Collections of Measures from Published Studies
+# =========================================================
 
-def calculate_labrie_measures(
-	all_player_bets,
-	savedir="",
-	filename="gamba_labrie_measures.csv",
-	loud=False,
-	daily=True,
-):
+
+def calculate_labrie_measures(all_player_bets, savedir="", filename="gamba_labrie_measures.csv", loud=False, daily=True,):
 	"""
 	Calculates the set of measures described in LaBrie et al's work in 2008 on casino gamblers.
 	These measures include the durations, frequencies, number of bets, bets per day, value per bet (eth), total amount wagered, net loss, and percent loss for each player.
@@ -299,14 +300,14 @@ def calculate_labrie_measures(
 	# load in all files (can take some time)
 
 	player_id = []
-	duration = []
-	frequency = []
-	number_of_bets = []
-	average_bets_per_day = []
-	average_bet_size = []
-	total_wagered = []
-	net_loss = []
-	percent_loss = []
+	all_duration = []
+	all_frequency = []
+	all_number_of_bets = []
+	all_average_bets_per_day = []
+	all_average_bet_size = []
+	all_total_wagered = []
+	all_net_loss = []
+	all_percent_loss = []
 
 	unique_players = list(set(all_player_bets["player_id"]))
 
@@ -319,30 +320,30 @@ def calculate_labrie_measures(
 	for i in tqdm(range(len(unique_players))):
 		player_bets = all_player_bets[all_player_bets["player_id"] == unique_players[i]]
 		player_id.append(player_bets.iloc[0]["player_id"])
-		duration.append(duration(player_bets))
-		frequency.append(frequency(player_bets))
+		all_duration.append(duration(player_bets))
+		all_frequency.append(frequency(player_bets))
 		if daily:
-			number_of_bets.append(number_of_bets_daily(player_bets))
-			average_bets_per_day.append(average_bets_per_day_daily(player_bets))
-			average_bet_size.append(average_bet_size_daily(player_bets))
+			all_number_of_bets.append(number_of_bets_daily(player_bets))
+			all_average_bets_per_day.append(average_bets_per_day_daily(player_bets))
+			all_average_bet_size.append(average_bet_size_daily(player_bets))
 		else:
-			number_of_bets.append(number_of_bets(player_bets))
-			average_bets_per_day.append(average_bets_per_day(player_bets))
-			average_bet_size.append(average_bet_size(player_bets))
-		total_wagered.append(total_wagered(player_bets))
-		net_loss.append(net_loss(player_bets))
-		percent_loss.append(percent_loss(player_bets))
+			all_number_of_bets.append(number_of_bets(player_bets))
+			all_average_bets_per_day.append(average_bets_per_day(player_bets))
+			all_average_bet_size.append(average_bet_size(player_bets))
+		all_total_wagered.append(total_wagered(player_bets))
+		all_net_loss.append(net_loss(player_bets))
+		all_percent_loss.append(percent_loss(player_bets))
 
 	labrie_dict = {
 		"player_id": player_id,
-		"duration": duration,
-		"frequency": frequency,
-		"num_bets": number_of_bets,
-		"average_bets_per_day": average_bets_per_day,
-		"average_bet_size": average_bet_size,
-		"total_wagered": total_wagered,
-		"net_loss": net_loss,
-		"percent_loss": percent_loss,
+		"duration": all_duration,
+		"frequency": all_frequency,
+		"num_bets": all_number_of_bets,
+		"average_bets_per_day": all_average_bets_per_day,
+		"average_bet_size": all_average_bet_size,
+		"total_wagered": all_total_wagered,
+		"net_loss": all_net_loss,
+		"percent_loss": all_percent_loss,
 	}
 
 	labrie_measures = pd.DataFrame.from_dict(labrie_dict)

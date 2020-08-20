@@ -316,6 +316,36 @@ def dummy_measures_table(size=100):
 
 
 
+def summarise_dgapp_providers(player_bets, providers, game_types=['coinflip','onedice','twodice','roll']):
+    """
+    
+    creates summary table - todo: finish writing docs
+
+    """
+
+    all_summaries = pd.DataFrame()
+    for provider in providers:
+        provider_bets = player_bets[(player_bets['provider'] == provider) & (player_bets['game_type'].isin(game_types))]
+
+        users = len(set(provider_bets["player_id"].values))
+        games = len(set(provider_bets["game_type"].values))
+        bets = provider_bets["bet_size"].sum()
+        payouts = provider_bets["payout_size"].sum()
+        start_block = provider_bets["block_number"].min()
+        end_block = provider_bets["block_number"].max()
+        start = provider_bets["bet_time"].min()
+        end = provider_bets["bet_time"].max()
+
+        summary = pd.DataFrame()
+        summary['values'] = ['Unique Users', 'Games','Bet Value','Payout Value','Start Block','End Block','Start Time','End Time']
+        summary[provider] = [users, games, bets, payouts, int(start_block), int(end_block), start, end]
+
+
+        all_summaries['values'] = summary['values']
+        all_summaries[provider] = summary[provider]
+
+    all_summaries.set_index('values', inplace=True)
+    return all_summaries
 
 
 
@@ -325,6 +355,7 @@ def dummy_measures_table(size=100):
 # =========================================================
 
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 plt.style.use('gamba')
 
 def plot_player_career(player_df, savename=None):
@@ -432,3 +463,31 @@ def plot_player_career_split(player_df):
     return plt
 
 
+def visualise_provider_dates(player_bets, providers, provider_labels=None):
+    """
+    Visualises the start and end dates of bets from one or more providers.
+
+    TODO: finish docs here
+
+    """
+    fig = plt.figure(figsize=[8,1.5])
+    
+    for i, provider in enumerate(providers):
+        print(provider)
+        provider_bets = player_bets[(player_bets['provider'] == provider)]
+        start = provider_bets["bet_time"].min()
+        end = provider_bets["bet_time"].max()
+        
+        plt.plot([start, end], [i,i], label=provider)
+        plt.scatter([start, end], [i,i], s=100, marker='|')
+    
+    ax = fig.axes[0]
+    ax.xaxis.set_major_locator(mdates.MonthLocator([1,4,7,10])) # ticks on first day of each quarter
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y')) # format of only month (3 letter abbr)
+    if provider_labels == None:
+        plt.yticks([0,1,2], providers)
+    else:
+        plt.yticks(range(len(providers)), provider_labels)
+    plt.ylim(-0.5, len(providers)-0.5)
+    plt.grid(True)
+    return plt

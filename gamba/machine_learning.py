@@ -3,7 +3,7 @@
 import numpy as np, pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.cluster import AgglomerativeClustering
-from statistics import mean
+import statistics
 import matplotlib.pyplot as plt
 
 import statsmodels.api as sm
@@ -168,12 +168,12 @@ def k_means_ensemble(measures_table, ensemble_size=100, min_clusters=2, max_clus
 	ensemble_silhouettes = []
 	for cluster_num in range(len(all_inertias[0])):
 		inertia_scores = [all_inertias[x][cluster_num] for x in range(ensemble_size)]
-		ensemble_inertias.append(mean(inertia_scores))
+		ensemble_inertias.append(statistics.mean(inertia_scores))
 
 		silhouette_scores = [
 			all_silhouettes[x][cluster_num] for x in range(ensemble_size)
 		]
-		ensemble_silhouettes.append(mean(silhouette_scores))
+		ensemble_silhouettes.append(statistics.mean(silhouette_scores))
 
 	return ensemble_inertias, ensemble_silhouettes
 

@@ -12,8 +12,8 @@ Quick links to each of the individual module pages is directly below, followed b
 	data
 	measures
 	labels
-	tests
 	machine_learning
+	tests
 
 
 
