@@ -36,6 +36,7 @@ setuptools.setup(
         "matplotlib >= 3.2.1",
         "scikit-learn >= 0.23.0",
         "statsmodels >= 0.11.1",
+        "tqdm >= 4.48.2",
     ],
 
     extras_require = {

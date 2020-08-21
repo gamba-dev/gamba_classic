@@ -48,9 +48,11 @@ Welcome
     </div>
 
 
-*gamba* provides open source implementations of existing analytical methods and data cleaning procedures. This makes replicating research easy, and exploring new methods and data sets possible. You can use the library to create a full analytical process - from data to publication - or use methods you need in your own code to create something new.
-
-The best way to get started using *gamba* is to read through the links below, and read through some of the :doc:`study replications <research/replications/index>` which are now possible using :doc:`gamba's functions <user_guide/index>`.
+gamba's philosophy
+--------------------
+*gamba* aims to provide powerful analytical code which is easy to use, and easy to extend. To meet this goal, the :doc:`user guide <user_guide/index>` will take you through your first analysis using the *gamba* library, and the :doc:`API reference <api/index>` contains full documentation for each method so you can add to the code from the guide. 
+The replications section is also a great place to start if you're looking to use the methodology from an existing study on a new data set, and would like something out-of-the-box.
+Click the links below to find out more.
 
 .. toctree::
 	:maxdepth: 3
