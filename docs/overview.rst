@@ -1,8 +1,6 @@
 Overview
 =======================
 
-Aim
-----
 gamba aims to provide transparent, verifiably accurate implementations of existing research in the field of player behaviour tracking. 
 This in turn promotes the development of more effective consumer protection measures, and lets us understand new forms of gambling faster than ever before.
 
@@ -17,8 +15,8 @@ To create a library capable of taking multiple data sources and performing multi
 	:width: 60%
 
 
-To make this possible, analyses using gamba revolve around the idea of a **measures table**, that is, a dataframe, or table, in a particular format. 
-This format has an identifier column (player_id), a collection of behavioural measures columns for each of those players, and (optionally) one or more labelling columns describing each player's membership to a given category or cluster;
+To make this possible, analyses using gamba revolve around the idea of a **measures table**, that is, a dataframe, in a particular format. 
+This format needs an identifier column (player_id), a collection of behavioural measures columns for each of those players, and (optionally) one or more labelling columns describing each player's membership to a given category or cluster;
 
 .. figure:: images/measures_table.*
 

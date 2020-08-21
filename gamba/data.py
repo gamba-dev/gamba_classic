@@ -318,8 +318,12 @@ def dummy_measures_table(size=100):
 
 def summarise_dgapp_providers(player_bets, providers, game_types=['coinflip','onedice','twodice','roll']):
     """
-    
-    creates summary table - todo: finish writing docs
+    Create a table containing summary data for providers using a collection of player bets. Summary includes the number of unique users and games, the total value of bets and payouts, the starting and ending block numbers, and the time the starting and ending blocks ocurred.
+
+    Args:
+        player_bets (Dataframe): Dataframe containing bets to a gambling application.
+        providers (List): Values to group in the 'provider' column.
+        game_types (List): Values to check in the 'game_type' column.
 
     """
 
