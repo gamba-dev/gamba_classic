@@ -54,6 +54,7 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinx_automodapi.automodapi',
     'sphinx_gallery.gen_gallery',
+    'matplotlib.sphinxext.plot_directive',
     'IPython.sphinxext.ipython_console_highlighting',
     'IPython.sphinxext.ipython_directive'
 ]

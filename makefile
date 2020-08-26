@@ -20,5 +20,7 @@ clean:
 %: makefile
 
 	pip install -e .
+	
+	rm -rf `find -type d -name .ipynb_checkpoints`
 
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
