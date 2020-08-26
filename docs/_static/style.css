@@ -285,3 +285,7 @@ div.overview_top img{
 	width: 60%;
 	margin: 30px auto;
 }
+
+div.figure.align-default img{
+	max-width: 100%;
+}

@@ -10,4 +10,5 @@ We can start by looking at the distributions of each of the measures in the popu
 
 	import gamba as gb
 	measures_table = gb.data.dummy_measures_table()
+	
 	gb.plot_measure_pair_plot(measures_table)
